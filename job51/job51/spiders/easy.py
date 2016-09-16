@@ -17,9 +17,39 @@ class EasySpider(CrawlSpider):
             callback='parse_item',follow = True),
     )
 
+    # def parse(self, response):
+    #     # l = ItemLoader(item=Job51Item(),response=response)
+    #     for sel in response.xpath('//div[@class="detlist gbox"]/div[@class="e"]'):
+    #         item = Job51Item()
+    #         item['title'] = sel.xpath('./p[1]/span[@class="title"]/a/text()').extract()
+    #         item['company'] = sel.xpath('./p[1]/a/text()').extract()
+    #         item['location'] = sel.xpath('./p[1]/span[@class="location name"]/text()').extract()
+    #         item['salary'] = sel.xpath('./p[1]/span[@class="location"]/text()').extract()
+    #         item['job_description'] = sel.xpath('./p[@class="text"]/text()').extract()
+    #         item['info'] = sel.xpath('./p[@class="order"]/text()').extract()
+    #         # House keeping
+    #         item['url'] = response.url
+    #         item['project']= self.settings.get('BOT_NAME')
+    #         item['spider'] = self.name
+    #         item['server']= socket.gethostname()
+    #         item['date'] = datetime.datetime.now()
+
+    #         yield item
     def parse_item(self, response):
-        l = ItemLoader(item=Job51Item(),response=response)
-        for sel in response.xpath('//*[@class="e"]'):
+        # l = ItemLoader(item=Job51Item(),response=response)
+        for sel in response.xpath('//div[@class="detlist gbox"]/div[@class="e"]'):
             item = Job51Item()
-            item['title'] = sel.xpath('./p[1]/span/a/text()').extract()
+            item['title'] = sel.xpath('./p[1]/span[@class="title"]/a/text()').extract()
+            item['company'] = sel.xpath('./p[1]/a/text()').extract()
+            item['location'] = sel.xpath('./p[1]/span[@class="location name"]/text()').extract()
+            item['salary'] = sel.xpath('./p[1]/span[@class="location"]/text()').extract()
+            item['job_description'] = sel.xpath('./p[@class="text"]/text()').extract()
+            item['info'] = sel.xpath('./p[@class="order"]/text()').extract()
+            # House keeping
+            item['url'] = response.url
+            item['project']= self.settings.get('BOT_NAME')
+            item['spider'] = self.name
+            item['server']= socket.gethostname()
+            item['date'] = datetime.datetime.now()
+
             yield item
