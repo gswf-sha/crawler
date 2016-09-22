@@ -14,7 +14,8 @@ def read_csv(filename):
         return list(reader)
 
 clink=read_csv('citylinks.csv')
-keyword =u'jiancai/?key=墙纸施工&cmcskey=墙纸施工'
+# keyword =u'jiancai/?key=墙纸施工&cmcskey=墙纸施工'
+keyword =u'hunqinggongsi/pn1/'
 url_list=[]
 for item in clink:
     url=urlparse.urljoin(item['links'],keyword)
