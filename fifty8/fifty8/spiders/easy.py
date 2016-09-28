@@ -21,6 +21,9 @@ for item in clink:
     url=urlparse.urljoin(item['links'],keyword)
     url_list.append(url)
 
+# To generate single city starting_url
+url_list=['http://sh.58.com/hunqinggongsi/pn1/']
+
 class EasySpider(CrawlSpider):
     name = 'easy'
     allowed_domains = ['58.com']
@@ -43,7 +46,7 @@ class EasySpider(CrawlSpider):
         l = ItemLoader(item=FiveeightItem(),response=response)
         # l.add_xpath('firm', '//p[@class="seller"][1]/a/text()',
         #             MapCompose(lambda i:i.replace(',', '')))
-        l.add_xpath('xm', '//*[@class="su_con mg_l_7"]/a/text()')
+        l.add_xpath('xm', '//*[@class="su_con"]/a/text()')
         l.add_xpath('phone','//span[@class="l_phone"]/text()')
         l.add_xpath('service','//h1/text()')
 
