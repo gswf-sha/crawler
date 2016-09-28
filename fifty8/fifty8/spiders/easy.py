@@ -22,7 +22,7 @@ for item in clink:
     url_list.append(url)
 
 # To generate single city starting_url
-url_list=['http://sh.58.com/hunqinggongsi/pn1/']
+# url_list=['http://sh.58.com/hunqinggongsi/pn1/']
 
 class EasySpider(CrawlSpider):
     name = 'easy'
@@ -48,7 +48,8 @@ class EasySpider(CrawlSpider):
         #             MapCompose(lambda i:i.replace(',', '')))
         l.add_xpath('xm', '//*[@class="su_con"]/a/text()')
         l.add_xpath('phone','//span[@class="l_phone"]/text()')
-        l.add_xpath('service','//h1/text()')
+        l.add_xpath('service','//article[@class="description_con"]//*/text()')
+        l.add_xpath('title','//h1/text()')
 
         # Housekeeping
         l.add_value('url', response.url)

@@ -14,6 +14,7 @@ class FiveeightItem(scrapy.Item):
     xm = scrapy.Field()
     phone = scrapy.Field()
     service = scrapy.Field()
+    title = scrapy.Field()
 
     # Housekeeping Fields:
     url = scrapy.Field()
